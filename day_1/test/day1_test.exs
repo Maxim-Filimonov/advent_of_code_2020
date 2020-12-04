@@ -24,11 +24,27 @@ defmodule Day1Test do
     end
   end
 
-  describe "find_candidate" do
-    test "returns numbers lower than max" do
+  describe "find_entries" do
+    test "can find entries in example" do
+      example = [1721,
+      979,
+      366,
+      299,
+      675,
+      1456]
       # 2020 - 1956 = 64
-      candidate = Day1.find_candidate(1956)
-      assert 64 = candidate
+      entries = Day1.find_entries(example)
+      assert [1721, 299] = entries
     end
+  end
+
+  test "can find entries in actual input" do
+    [match1, match2] = Day1.read_input
+      |> Day1.parse
+      |> Day1.find_entries
+
+    answer =  match1 * match2
+    IO.puts(answer)
+    assert answer > 0
   end
 end

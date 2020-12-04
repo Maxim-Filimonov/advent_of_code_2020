@@ -35,8 +35,12 @@ defmodule Day1 do
       |> Enum.map(&String.to_integer/1)
   end
 
-  @spec find_candidate(number) :: number
-  def find_candidate(input) do
-    2020 - input
+  def find_entries(input) do
+    # sorted = candidates.sort
+    candidates = Enum.map(input, fn x -> 2020 - x end)
+    match = Enum.find(candidates, fn x -> Enum.any?(input, fn y -> y == x end) end)
+    [2020 - match, match]
+    # Enum.each(candidates, fn x -> 2020- x end)
   end
+
 end
